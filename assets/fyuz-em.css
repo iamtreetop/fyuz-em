@@ -2,6 +2,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 30px;
+}
+
+.main > h1{
+  font-family: 'Baloo Da 2', cursive;
+  font-weight: 800;
+  font-size: 50px;
+  margin: 5px 0 10px 0;
+  color: #ff8b22;
+}
+
+html{
+  height: 100%;
+  background: #cfe9ff;
 }
 
 body {
@@ -20,13 +34,107 @@ canvas {
 }
 
 .left{
+  /* border: 2px solid green; */
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  padding-top: 160px;
+  padding-right: 20px;
+}
+
+.left > p {
+  /* border: 2px solid red; */
+  border: 1px solid black;
+  border-style: dashed;
+  border-radius: 5px;
+  height: 120px;
+  width: 250px;
+  font-size: 22px;
+  background-color: white;
+  font-family: 'Amatic SC', cursive;
+  font-weight: 700; 
+  text-align: center;
+}
+
+.right > p {
+  /* border: 2px solid red; */
+  border: 1px solid black;
+  border-style: dashed;
+  border-radius: 5px;
+  width: 250px;
+  font-size: 22px;
+  background-color: white;
+  font-family: 'Amatic SC', cursive;
+  font-weight: 700; 
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.instructions{
+  /* border: 2px solid orange; */
+  border: 1px solid black;
+  border-style: dashed;
+  height: fit-content;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 18px;
+  background-color: white;
+  font-family: 'Amatic SC', cursive;
+  font-weight: 700; 
 }
 
 .right{
+  /* border: 2px solid green; */
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 160px;
+  padding-left: 20px;
 }
+
+button{
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: 200px;
+  background-color: #ff8b22;
+  height: 30px;
+  margin-bottom: 20px;
+  color: white;
+  font-family: 'Amatic SC', cursive;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #fc6d00;
+  text-decoration: underline;
+  animation: effect 0.4s infinite;
+}
+
+@keyframes effect { 
+        0% { 
+            transform: translateX(0px) rotate(0deg); 
+        } 
+  
+        20% { 
+            transform: translateX(-2px) rotate(-4deg); 
+        } 
+  
+        40% { 
+            transform: translateX(-2px) rotate(-2deg); 
+        } 
+  
+        60% { 
+            transform: translateX(2px) rotate(4deg); 
+        } 
+  
+        80% { 
+            transform: translateX(2px) rotate(2deg); 
+        } 
+  
+        100% { 
+            transform: translateX(0px) rotate(0deg); 
+        } 
+    } 
