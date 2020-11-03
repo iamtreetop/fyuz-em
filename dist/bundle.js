@@ -22,10 +22,10 @@ document.addEventListener("DOMContentLoaded", () =>{
     // ctx.moveTo(50, 300);
     // ctx.lineTo(300, 100);
     // ctx.stroke();
-    context.fillStyle = "#000000"
     ctx.beginPath();
     ctx.arc(300, 300, 150, 0, Math.PI * 2, false);
-    ctx.strokeStyle = "green"
+    ctx.strokeStyle = "lightgrey"
+    ctx.fillstyle = "burgundy"
     ctx.stroke();
 
     // const canvas = document.getElementById("game-canvas")
