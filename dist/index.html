@@ -4,20 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>fyuz-em</title>
-    <style type="text/css">
-        canvas {
-            border: 2px solid black;
-        }
-
-        body {
-            margin: 0;
-            /* background: darkred; */
-        }
-    </style>
     <script src="../src/index.js"></script>
+    <!-- <script type="application/javascript" src="/dist/bundle.js"></script> -->
 </head>
 
 <body>
+    <link rel="stylesheet" href="../assets/fyuz-em.css">
     <div class="left">
         <p>Welcome to fyüz-em!
             Short intro here</p>
@@ -32,7 +24,41 @@
         </div>
     </div>
 
-    <canvas>Game Goes Here</canvas>
+    <div class="main">
+        <div id="author">
+            <a target=”_blank” href="https://github.com/iamtreetop">
+                <img id="logo-link" src="../assets/images/github-logo.png">
+            </a>
+            <a  target=”_blank” href="https://www.linkedin.com/in/trivta/">
+                <img id="logo-link" src="../assets/images/linkedin-logo.png">
+            </a>
+        </div>
+        <h1>fyüz-em</h1>
+        <div class="canvas-flex">
+            <div class="canvas-relative">
+                <!-- <img src="./images/cloudy-sky-2.jpg" width="700" height="390" /> -->
+                <!-- <canvas id="background" width="700" height="390"></canvas> -->
+                <canvas id="canvas" width="500" height="500"></canvas>
+                    <!-- <script>
+                        var canvas = document.getElementById('Canvas');
+                        var ctx = canvas.getContext('2d');
+                        ctx.rect(0, 0, canvas.width, canvas.height);
+
+                        // add linear gradient
+                        var grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                        // light blue
+                        grd.addColorStop(0, '#8ED6FF');
+                        // dark blue
+                        grd.addColorStop(1, '#004CB3');
+                        ctx.fillStyle = grd;
+                        ctx.fill();
+                    </script> -->
+            </div>
+            <div class="score-flex">
+                <div id="score"></div>
+            </div>
+        </div>
+    </div>
 
     <div class="right">
         <p>
