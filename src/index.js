@@ -2,6 +2,8 @@
 // const Background = require("./background");
 // const GamePiece = require("./pieces")
 // // import Background from "./background";
+// const Player = require("./player")
+// import Player from './player';
 
 document.addEventListener("DOMContentLoaded", () =>{
     const canvas = document.querySelector('canvas')
@@ -11,6 +13,13 @@ document.addEventListener("DOMContentLoaded", () =>{
     // const background = new Background();
     // Background();
     // GamePiece();
+    // ctx.rect(0, 0, backgroundEl.width, backgroundEl.height);
+    // const grd = ctx.createLinearGradient(0, 0, backgroundEl.width, backgroundEl.height);
+
+    ctx.beginPath();
+    ctx.arc(canvas.width / 2, canvas.height / 2, 150, 0, Math.PI * 2, false);
+    ctx.strokeStyle = "lightgrey"
+    ctx.stroke();   
 
     class Player{
         constructor(x, y , radius, color){
@@ -55,8 +64,8 @@ document.addEventListener("DOMContentLoaded", () =>{
     const y = canvas.height / 2
 
     const player = new Player(x, y, 20, "green");
-    player.draw();
-
+    
+    
     // const projectile = new Projectile(
     //     canvas.width / 2, 
     //     canvas.height / 2, 
@@ -69,12 +78,25 @@ document.addEventListener("DOMContentLoaded", () =>{
     // )
 
     const projectiles = []
-    
 
-    function animate(){
-        requestAnimationFrame(animate);
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        projectiles.forEach(projectile => {
+    function animate(){ 
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.rect(0, 0, canvas.width, canvas.height);
+            const grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            grd.addColorStop(0, '#8ED6FF');
+            grd.addColorStop(1, '#004CB3');
+            ctx.fillStyle = grd;
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(canvas.width / 2, canvas.height / 2, 150, 0, Math.PI * 2, false);
+            ctx.strokeStyle = "lightgrey"
+            ctx.stroke(); 
+            
+            player.draw();
+            projectiles.forEach(projectile => {
             projectile.update();
         })
         // projectile.draw();
@@ -90,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         }
         
         projectiles.push(
-            new Projectile(canvas.width / 2, canvas.height / 2, 10, 'blue', velocity)
+            new Projectile(canvas.width / 2, canvas.height / 2, 20, 'blue', velocity)
         )
         console.log(event)
     })
