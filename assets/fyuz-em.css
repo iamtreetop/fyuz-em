@@ -30,6 +30,7 @@ body {
 canvas {
   border: 3px solid black;
   border-style: dashed;
+  border-radius: 5px;
   /* background-color: blue; */
 }
 

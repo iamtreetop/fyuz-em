@@ -16,11 +16,6 @@ document.addEventListener("DOMContentLoaded", () =>{
     // ctx.rect(0, 0, backgroundEl.width, backgroundEl.height);
     // const grd = ctx.createLinearGradient(0, 0, backgroundEl.width, backgroundEl.height);
 
-    ctx.beginPath();
-    ctx.arc(canvas.width / 2, canvas.height / 2, 150, 0, Math.PI * 2, false);
-    ctx.strokeStyle = "lightgrey"
-    ctx.stroke();   
-
     class Player{
         constructor(x, y , radius, color){
             this.x = x
@@ -63,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     const x = canvas.width / 2
     const y = canvas.height / 2
 
-    const player = new Player(x, y, 20, "green");
+    const player = new Player(x, y, 20, "darkred");
     
     
     // const projectile = new Projectile(
@@ -91,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () =>{
             ctx.fill();
 
             ctx.beginPath();
-            ctx.arc(canvas.width / 2, canvas.height / 2, 150, 0, Math.PI * 2, false);
+            ctx.arc(canvas.width / 2, canvas.height / 2, 175, 0, Math.PI * 2, false);
             ctx.strokeStyle = "lightgrey"
             ctx.stroke(); 
             
