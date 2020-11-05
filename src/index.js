@@ -1,14 +1,58 @@
-// const Game = require("./game")
-const Background = require("./background");
-// import Background from "./background";
+// // const Game = require("./game")
+// const Background = require("./background");
+// const GamePiece = require("./pieces")
+// // import Background from "./background";
 
 document.addEventListener("DOMContentLoaded", () =>{
     const canvas = document.querySelector('canvas')
-    // const ctx = canvas.getContext('2d');
-    const backgroundEl = document.getElementById("background");
+    const ctx = canvas.getContext('2d');
+    // const backgroundEl = document.getElementById("background");
     // const ctxBg = backgroundEl.getContext("2d");
     // const background = new Background();
-    backgroundEl();
+    // Background();
+    // GamePiece();
+
+    class Player{
+        constructor(x, y , radius, color){
+            this.x = x
+            this.y = y
+            this.radius = radius
+            this.color = color
+        }
+
+        draw(){
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            ctx.fillStyle = this.color
+            ctx.fill();
+        }
+    }
+
+    class Projectile {
+        constructor(x, y, radius, color, velocity) {
+            this.x = x
+            this.y = y
+            this.radius = radius
+            this.color = color
+            this.velocity = velocity
+        }
+
+        draw(){
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            ctx.fillStyle = this.color
+            ctx.fill();
+        }
+    }
+
+    const x = canvas.width / 2
+    const y = canvas.height / 2
+
+    const player = new Player(x, y, 20, "green");
+    player.draw();
+
+
+
 
     // ctx.rect(0, 0, canvas.width, canvas.height);
     // const grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
@@ -47,10 +91,5 @@ document.addEventListener("DOMContentLoaded", () =>{
     //     const gameView = new GameView(game, ctx, background, canvasEl);
     //     gameView.gameMenu();
     // });
-
-
-    console.log("Webpack is working!")
-
-    
 })
 

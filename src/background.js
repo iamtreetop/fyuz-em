@@ -1,5 +1,5 @@
 function Background () {
-      backgroundEl = document.getElementById("background");
+      backgroundEl = document.getElementById("canvas");
     
       const ctx = backgroundEl.getContext('2d');
   

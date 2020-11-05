@@ -1,3 +1,15 @@
+// function GamePiece () {
+//     piece = document.getElementById("pieces")
+//     const ctx = piece.getContext('2d');
+
+//     ctx.beginPath();
+//     ctx.arc(300, 250, 50, 0, Math.PI * 2, false);
+//     ctx.strokeStyle = "black"
+//     ctx.stroke();
+// }
+
+// module.exports = GamePiece;
+
 class GamePiece {
   constructor(pieceColor, pieceValue, description){
     this.pieceColor = pieceColor;
@@ -21,16 +33,7 @@ class GamePiece {
     description += add;
   }
 
-  drawPiece(x, y) {
-    ellipse(x, y, 60, 60);
-    fill(0,0,0);
-    textSize(12);
-    if (pieceValue != -1) {
-      fill(255, 255, 255);
-      text(description, x - 12, y - 2);
-      text("" + pieceValue, x - 7, y + 9);
-    } else {
-      text(description, x - 5, y + 2);
-    }
-  };
+
 }
+
+export default GamePiece;

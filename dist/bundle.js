@@ -1,79 +1,64 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./src/background.js":
-/*!***************************!*\
-  !*** ./src/background.js ***!
-  \***************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module */
-/***/ ((module) => {
-
-function Background () {
-      backgroundEl = document.getElementById("background");
-    
-      const ctx = backgroundEl.getContext('2d');
-  
-      ctx.rect(0, 0, backgroundEl.width, backgroundEl.height);
-      const grd = ctx.createLinearGradient(0, 0, backgroundEl.width, backgroundEl.height);
-      grd.addColorStop(0, '#8ED6FF');
-      grd.addColorStop(1, '#004CB3');
-      ctx.fillStyle = grd;
-      ctx.fill();
-  
-      ctx.beginPath();
-      ctx.arc(300, 250, 150, 0, Math.PI * 2, false);
-      ctx.strokeStyle = "lightgrey"
-      ctx.stroke();
-}
-
-module.exports = Background;
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The module cache
-/******/ 	var __webpack_module_cache__ = {};
-/******/ 	
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/ 		// Check if module is in cache
-/******/ 		if(__webpack_module_cache__[moduleId]) {
-/******/ 			return __webpack_module_cache__[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			// no module.id needed
-/******/ 			// no module.loaded needed
-/******/ 			exports: {}
-/******/ 		};
-/******/ 	
-/******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/ 	
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/ 	
-/************************************************************************/
-(() => {
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /*! unknown exports (runtime-defined) */
-/*! runtime requirements: __webpack_require__ */
-// const Game = require("./game")
-const Background = __webpack_require__(/*! ./background */ "./src/background.js");
-// import Background from "./background";
+/*! runtime requirements:  */
+// // const Game = require("./game")
+// const Background = require("./background");
+// const GamePiece = require("./pieces")
+// // import Background from "./background";
 
 document.addEventListener("DOMContentLoaded", () =>{
     const canvas = document.querySelector('canvas')
-    // const ctx = canvas.getContext('2d');
-    const backgroundEl = document.getElementById("background");
+    const ctx = canvas.getContext('2d');
+    // const backgroundEl = document.getElementById("background");
     // const ctxBg = backgroundEl.getContext("2d");
     // const background = new Background();
-    backgroundEl();
+    // Background();
+    // GamePiece();
+
+    class Player{
+        constructor(x, y , radius, color){
+            this.x = x
+            this.y = y
+            this.radius = radius
+            this.color = color
+        }
+
+        draw(){
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            ctx.fillStyle = this.color
+            ctx.fill();
+        }
+    }
+
+    class Projectile {
+        constructor(x, y, radius, color, velocity) {
+            this.x = x
+            this.y = y
+            this.radius = radius
+            this.color = color
+            this.velocity = velocity
+        }
+
+        draw(){
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            ctx.fillStyle = this.color
+            ctx.fill();
+        }
+    }
+
+    const x = canvas.width / 2
+    const y = canvas.height / 2
+
+    const player = new Player(x, y, 20, "green");
+    player.draw();
+
+
+
 
     // ctx.rect(0, 0, canvas.width, canvas.height);
     // const grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
@@ -112,15 +97,8 @@ document.addEventListener("DOMContentLoaded", () =>{
     //     const gameView = new GameView(game, ctx, background, canvasEl);
     //     gameView.gameMenu();
     // });
-
-
-    console.log("Webpack is working!")
-
-    
 })
 
-
-})();
 
 /******/ })()
 ;
