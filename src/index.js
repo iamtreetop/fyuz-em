@@ -43,6 +43,12 @@ document.addEventListener("DOMContentLoaded", () =>{
             ctx.fillStyle = this.color
             ctx.fill();
         }
+
+        update(){
+            this.draw()
+            this.x = this.x + this.velocity.x
+            this.y = this.y + this.velocity.y
+        }
     }
 
     const x = canvas.width / 2
@@ -51,8 +57,44 @@ document.addEventListener("DOMContentLoaded", () =>{
     const player = new Player(x, y, 20, "green");
     player.draw();
 
+    // const projectile = new Projectile(
+    //     canvas.width / 2, 
+    //     canvas.height / 2, 
+    //     10, 
+    //     "red",
+    //     {
+    //         x: 1,
+    //         y: 1
+    //     }
+    // )
 
+    const projectiles = []
+    
 
+    function animate(){
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        projectiles.forEach(projectile => {
+            projectile.update();
+        })
+        // projectile.draw();
+        // projectile.update();
+        // console.log('animate');
+    }
+
+    addEventListener('click', (event) => {
+        const angle = Math.atan2(event.offsetY - canvas.height / 2, event.offsetX- canvas.width / 2)
+        const velocity = {
+            x: Math.cos(angle),
+            y: Math.sin(angle)
+        }
+        
+        projectiles.push(
+            new Projectile(canvas.width / 2, canvas.height / 2, 10, 'blue', velocity)
+        )
+        console.log(event)
+    })
+    animate();
 
     // ctx.rect(0, 0, canvas.width, canvas.height);
     // const grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
