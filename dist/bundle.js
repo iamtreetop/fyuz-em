@@ -63,25 +63,14 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     const x = canvas.width / 2
     const y = canvas.height / 2
-
-    const player = new Player(x, y, 20, "darkred");
-    
-    
-    // const projectile = new Projectile(
-    //     canvas.width / 2, 
-    //     canvas.height / 2, 
-    //     10, 
-    //     "red",
-    //     {
-    //         x: 1,
-    //         y: 1
-    //     }
-    // )
-
+    const projColor = `hsl(${Math.random() * 360}, 50%, 50%)`
+    const playerColor = projColor;
+    const player = new Player(x, y, 20, playerColor);
     const projectiles = []
 
+    let animationId;
     function animate(){ 
-            requestAnimationFrame(animate);
+            animationId = requestAnimationFrame(animate);
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             ctx.rect(0, 0, canvas.width, canvas.height);
@@ -108,12 +97,12 @@ document.addEventListener("DOMContentLoaded", () =>{
     addEventListener('click', (event) => {
         const angle = Math.atan2(event.offsetY - canvas.height / 2, event.offsetX- canvas.width / 2)
         const velocity = {
-            x: Math.cos(angle),
-            y: Math.sin(angle)
+            x: Math.cos(angle) * 5,
+            y: Math.sin(angle) * 5
         }
-        
+        const projColor = `hsl(${Math.random() * 360}, 50%, 50%)`
         projectiles.push(
-            new Projectile(canvas.width / 2, canvas.height / 2, 20, 'blue', velocity)
+            new Projectile(canvas.width / 2, canvas.height / 2, 20, projColor, velocity)
         )
         console.log(event)
     })

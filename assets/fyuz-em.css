@@ -94,6 +94,11 @@ canvas {
   padding-left: 20px;
 }
 
+.score-flex{
+  position: relative;
+  z-index: 1;
+}
+
 button{
   border: none;
   outline: none;
