@@ -16,6 +16,16 @@ document.addEventListener("DOMContentLoaded", () =>{
     // ctx.rect(0, 0, backgroundEl.width, backgroundEl.height);
     // const grd = ctx.createLinearGradient(0, 0, backgroundEl.width, backgroundEl.height);
 
+    class Board{
+        makePos() {
+            const grid = [];
+            for (let i = 0; i < 20; i++) {
+                let pos = new Array(20);
+                grid.push(pos);
+            }
+        }
+    }
+
     class Player{
         constructor(x, y , radius, color){
             this.x = x
@@ -36,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () =>{
         }
     }
 
-    class Projectile {
+    class Bubble {
         constructor(x, y, radius, color, velocity) {
             this.x = x
             this.y = y
@@ -59,12 +69,13 @@ document.addEventListener("DOMContentLoaded", () =>{
         }
     }
 
-    const x = canvas.width / 2
-    const y = canvas.height / 2
+
+    const midX = canvas.width / 2
+    const midY = canvas.height / 2
     const projColor = `hsl(${Math.random() * 360}, 50%, 50%)`
     const playerColor = projColor;
-    const player = new Player(x, y, 20, playerColor);
-    const projectiles = []
+    const player = new Player(midX, midY, 20, playerColor);
+    const bubbles = []
 
     function distance(x1, y1, x2, y2) {
         let xDist = x2 - x1;
@@ -73,22 +84,32 @@ document.addEventListener("DOMContentLoaded", () =>{
     }
 
     let circle1;
-    let circle2;
+
+    // testAngle
+    // const testCircle1 = new Player((midX + Math.cos(60)*175) - (Math.cos(60) * 20), (midY + Math.sin(60)*175) - (Math.cos(60) * 20), 20, 'red')
+    // const testCircle2 = new Player(midX + Math.cos(120)*140, midY + Math.sin(120)*140, 20, 'red')
+    // const testCircle3 = new Player(midX + Math.cos(180)*140, midY + Math.sin(180)*140, 20, 'red')
+    // const testCircle4 = new Player(midX + Math.cos(240)*140, midY + Math.sin(240)*140, 20, 'red')
+    // const testCircle5 = new Player(midX + Math.cos(300)*140, midY + Math.sin(300)*140, 20, 'red')
+    // const testCircle6 = new Player(midX + Math.cos(360)*140, midY + Math.sin(360)*140, 20, 'red')
+    const testCircle = new Player(midX, midY, 10, 'red')
+    // const testCircle2 = new Player(300, 125, 10, 'black')
+    
+
     function init(){
-        circle1 = new Player(300, 250, 130, 'transparent');
-        // circle2 = new Player(10, 10, 20, 'red')
+        circle1 = new Player(300, 250, 130, 'black');
+        // circle2 = new Player(50, 50, 20, 'red');
     }
 
-    let projectile;
+    let bubble;
     let animationId;
     function animate(){ 
+        
+        
         animationId = requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-        circle1.update();
-        // circle2.x = mouse.x;
-        // circle2.y = mouse.y;
-        // circle2.update();
+
+        //background
         ctx.rect(0, 0, canvas.width, canvas.height);
         const grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
         grd.addColorStop(0, '#8ED6FF');
@@ -96,45 +117,46 @@ document.addEventListener("DOMContentLoaded", () =>{
         ctx.fillStyle = grd;
         ctx.fill();
 
+        //outer rim
+
         ctx.beginPath();
-        ctx.arc(canvas.width / 2, canvas.height / 2, 175, 0, Math.PI * 2, false);
-        ctx.strokeStyle = "lightgrey"
+        ctx.arc(midX, midY, 175, 0, Math.PI * 2, false);
+        ctx.strokeStyle = "black"
         ctx.stroke(); 
-            
+        
         player.draw();
-        projectiles.forEach(projectile => {
-        projectile.draw();
-        projectile.update();
-            
-            if (distance(circle1.x, circle1.y, projectile.x, projectile.y) > circle1.radius + projectile.radius) {
+        testCircle.update();
+        // testCircle1.update();
+        // testCircle2.update();
+        // testCircle3.update();
+        // testCircle4.update();
+        // testCircle5.update();
+        // testCircle6.update();
+        let circleArr = []
+        for (let i = 0; i < 20; i++){
+            circleArr.push(
+                new Player((midX + Math.cos(0.314159*i)*150) - (Math.cos(0.314159*i)), (midY + Math.sin(0.314159*i)*150) - (Math.cos(0.314159*i)), 20, 'black')
+            )
+        }
+        circleArr.forEach(circle => {
+            circle.update();
+        })
+
+        bubbles.forEach(bubble => {
+            bubble.draw();
+            bubble.update();
+                
+            if (distance(circle1.x, circle1.y, bubble.x, bubble.y) > circle1.radius + bubble.radius) {
                 // make circle stop, not disappear
-                // projectile.x = x;
-                // projectile.y = y;
-                projectile.velocity = {
+                // circle1.color = 'black';
+                bubble.velocity = {
                     x: 0,
                     y: 0
                 };
-                // circle1.color = 'lightgrey';
-    
-            } else {
-                circle1.color = 'transparent';
             }
-
         })
-        // projectile.update();
-        console.log(distance(circle1.x, circle1.y, player.x, player.y));
-        // console.log('animate');
+        // console.log('hi');
     }
-
-    const mouse = {
-        x: 10,
-        y: 10
-    }
-
-    addEventListener('mousemove', (event) => {
-        mouse.x = event.offsetX
-        mouse.y = event.offsetY
-    })
 
     addEventListener('click', (event) => {
         const angle = Math.atan2(event.offsetY - canvas.height / 2, event.offsetX- canvas.width / 2)
@@ -144,50 +166,13 @@ document.addEventListener("DOMContentLoaded", () =>{
         }
 
         const projColor = `hsl(${Math.random() * 360}, 50%, 50%)`
-        projectiles.push(
-            new Projectile(canvas.width / 2, canvas.height / 2, 20, projColor, velocity)
+        bubbles.push(
+            new Bubble(canvas.width / 2, canvas.height / 2, 20, projColor, velocity)
         )
         console.log(event)
     })
+
     init();
     animate();
-
-    // ctx.rect(0, 0, canvas.width, canvas.height);
-    // const grd = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    // grd.addColorStop(0, '#8ED6FF');
-    // grd.addColorStop(1, '#004CB3');
-    // ctx.fillStyle = grd;
-    // ctx.fill();
-
-    // ctx.beginPath();
-    // ctx.arc(300, 250, 150, 0, Math.PI * 2, false);
-    // ctx.strokeStyle = "lightgrey"
-    // ctx.stroke();
-
-    // for(let i = 0; i < 20; i++) {
-    //     let x = Math.random() * 250;
-    //     let y = Math.random() * 250;
-
-    //     ctx.beginPath();
-    //     ctx.arc(x, y, 20, 0, Math.PI * 2, false);
-    //     ctx.strokeStyle = "blue"
-    //     ctx.stroke();
-    // }
-
-    // $('.start-button').click(() => {
-    //     const game = new Game(bee, net, honey, canvasEl);
-    //     const gameView = new GameView(game, ctx, background, canvasEl);
-    //     background.startBg(backgroundEl, ctxBg);
-    //     gameView.gameMenu();
-    // });
-
-    // $('.restart-button').click(() => {
-    //     ctx.clearRect(0,0, 700, 390);
-    //     ctxBg.clearRect(0,0, 700, 390);
-    //     GameView.gameOver = false;
-    //     const game = new Game(bee, net, honey, canvasEl);
-    //     const gameView = new GameView(game, ctx, background, canvasEl);
-    //     gameView.gameMenu();
-    // });
 })
 
