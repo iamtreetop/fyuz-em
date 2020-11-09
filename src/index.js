@@ -18,12 +18,14 @@ document.addEventListener("DOMContentLoaded", () =>{
 
     class Board{
         makePos() {
-            const grid = [];
+            const positions = [];
             for (let i = 0; i < 20; i++) {
                 let pos = new Array(20);
-                grid.push(pos);
+                positions.push(pos);
             }
         }
+
+        
     }
 
     class Player{
@@ -126,13 +128,13 @@ document.addEventListener("DOMContentLoaded", () =>{
         
         player.draw();
         testCircle.update();
-        // testCircle1.update();
-        // testCircle2.update();
-        // testCircle3.update();
-        // testCircle4.update();
-        // testCircle5.update();
-        // testCircle6.update();
+        
         let circleArr = []
+
+        // board.size
+        // let angle = (360/board.size)
+        // let radian = 57.3 * angle
+
         for (let i = 0; i < 20; i++){
             circleArr.push(
                 new Player((midX + Math.cos(0.314159*i)*150) - (Math.cos(0.314159*i)), (midY + Math.sin(0.314159*i)*150) - (Math.cos(0.314159*i)), 20, 'black')

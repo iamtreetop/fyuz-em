@@ -10,7 +10,7 @@
 
 // module.exports = GamePiece;
 
-class GamePiece {
+class Bubble {
   constructor(pieceColor, pieceValue, description){
     this.pieceColor = pieceColor;
     this.pieceValue = pieceValue;
@@ -37,3 +37,13 @@ class GamePiece {
 }
 
 export default GamePiece;
+
+// [[],[],[],[],[],[]] <= board.size 6 ==>
+// [[],[],[],[],[]] <= board.size 5
+// [[],[],[],[],[],[],[]] <= board.size 7
+// [
+//   [],[],[],[],[],
+//   [],[],[],[],[],
+//   [],[],[],[],[],
+//   [],[],[],[],[],
+// ] <= board.size 7

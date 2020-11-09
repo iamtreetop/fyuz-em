@@ -43,7 +43,7 @@ canvas {
   padding-right: 20px;
 }
 
-.left > p {
+.welcome-box {
   /* border: 2px solid red; */
   border: 1px solid black;
   border-style: dashed;
@@ -55,7 +55,20 @@ canvas {
   font-family: 'Amatic SC', cursive;
   font-weight: 700; 
   text-align: center;
+  margin-bottom: 25px;
+  margin-top: 20px;
 }
+
+.welcome-box > h2 {
+  margin: 0;
+  margin-top: 5px;
+}
+.welcome-box > p {
+  margin-top: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
 
 .right > p {
   /* border: 2px solid red; */
@@ -74,14 +87,25 @@ canvas {
 .instructions{
   /* border: 2px solid orange; */
   border: 1px solid black;
+  width: 250px;
   border-style: dashed;
   height: fit-content;
   border-radius: 5px;
   text-align: center;
-  font-size: 18px;
+  font-size: 22px;
   background-color: white;
   font-family: 'Amatic SC', cursive;
   font-weight: 700; 
+}
+
+.instructions > h2 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.instructions > p{
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .right{
